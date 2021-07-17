@@ -1,0 +1,29 @@
+{
+  "name": "tsheets-cron",
+  "version": "1.0.0",
+  "description": "Auto clock-out from TSheets at a specified time",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node -r dotenv/config index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanejearley/tsheets-cron.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shanejearley/tsheets-cron/issues"
+  },
+  "homepage": "https://github.com/shanejearley/tsheets-cron#readme",
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  },
+  "dependencies": {
+    "request": "^2.88.2",
+    "util": "^0.12.4"
+  }
+}
