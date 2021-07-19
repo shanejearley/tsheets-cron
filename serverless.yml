@@ -1,0 +1,15 @@
+service: tsheets-cron
+
+frameworkVersion: '2'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+
+functions:
+  cronHandler:
+    handler: handler.run
+    events:
+      - schedule: cron(0 0 * * ? *)

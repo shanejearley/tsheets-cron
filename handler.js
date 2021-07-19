@@ -1,19 +1,24 @@
-import util from "util";
-import request from "request";
+const util = require("util");
+const request = require("request");
 const requestPromise = util.promisify(request);
-import {
+const {
   getCurrentDateString,
   getCurrentDateStringShort,
-} from "./utils/date.js";
+} = require("./utils/date.js");
 
 const DATE_STRING = getCurrentDateString();
 const DATE_STRING_SHORT = getCurrentDateStringShort(DATE_STRING);
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
+let accessToken = process.env.ACCESS_TOKEN;
+let refreshToken = process.env.REFRESH_TOKEN;
 
-export const run = async (_event, _context) => {
-  let accessToken = process.env.ACCESS_TOKEN;
-  let refreshToken = process.env.REFRESH_TOKEN;
+module.exports.run = async (_event, _context) => {
+
+  if (!checkCreds) {
+    console.log("Missing environment variables");
+    return { statusCode: 500 };
+  }
 
   let user = await getUser(accessToken);
 
@@ -40,6 +45,10 @@ export const run = async (_event, _context) => {
   console.log("Clocked out");
   return { statusCode: 200 };
 };
+
+const checkCreds = () => {
+  return CLIENT_ID && CLIENT_SECRET && accessToken && refreshToken
+}
 
 const getUser = async (accessToken) => {
   const userOptions = {
@@ -118,5 +127,3 @@ const clockOut = async (accessToken, status) => {
 
   return await requestPromise(clockOutOptions);
 }
-
-run().catch(err => console.error(err));

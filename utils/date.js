@@ -1,7 +1,11 @@
-export const getCurrentDateString = () => {
+exports.getCurrentDateString = () => {
 	const datetime = getCurrentDateTime();
     const timezone = getCurrentTimezone();
     return datetime + timezone;
+}
+
+exports.getCurrentDateStringShort = (dateString) => {
+    return dateString.split('T')[0];
 }
 
 const getCurrentDateTime = () => {
@@ -39,8 +43,4 @@ const getCurrentTimezone = () => {
         return '-' + offsetHours + ':' + offsetMinutes;
     else
         return 'Z';
-}
-
-export const getCurrentDateStringShort = (dateString) => {
-    return dateString.split('T')[0];
 }

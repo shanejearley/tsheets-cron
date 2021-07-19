@@ -2,8 +2,7 @@
   "name": "tsheets-cron",
   "version": "1.0.0",
   "description": "Auto clock-out from TSheets at a specified time",
-  "main": "index.js",
-  "type": "module",
+  "main": "handler.js",
   "scripts": {
     "start": "node -r dotenv/config handler.js",
     "test": "echo \"Error: no test specified\" && exit 1"
