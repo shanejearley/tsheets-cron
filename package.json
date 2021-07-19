@@ -5,7 +5,8 @@
   "main": "handler.js",
   "scripts": {
     "start": "node -r dotenv/config handler.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -19,10 +20,26 @@
   },
   "homepage": "https://github.com/shanejearley/tsheets-cron#readme",
   "devDependencies": {
-    "dotenv": "^10.0.0"
+    "auto-changelog": "^2.3.0",
+    "dotenv": "^10.0.0",
+    "release-it": "^14.10.0"
   },
   "dependencies": {
     "request": "^2.88.2",
     "util": "^0.12.4"
+  },
+  "release-it": {
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": true
+    },
+    "git": {
+      "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template https://raw.githubusercontent.com/release-it/release-it/master/templates/changelog-compact.hbs"
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p"
+    }
   }
 }
