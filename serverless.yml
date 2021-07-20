@@ -12,4 +12,4 @@ functions:
   cronHandler:
     handler: handler.run
     events:
-      - schedule: cron(0 0 * * ? *)
+      - schedule: cron(0 23 * * ? *)
